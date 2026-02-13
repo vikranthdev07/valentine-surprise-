@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Elakkiya 💗</title>
+
+<style>
+body{
+  margin:0;
+  font-family:'Segoe UI',sans-serif;
+  background:linear-gradient(135deg,#ff758c,#ff7eb3);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  text-align:center;
+  color:white;
+  overflow:hidden;
+}
+
+/* Floating Hearts */
+.heart{
+  position:fixed;
+  bottom:-20px;
+  font-size:20px;
+  animation:floatUp 6s linear infinite;
+  opacity:0.8;
+}
+@keyframes floatUp{
+  to{
+    transform:translateY(-110vh) rotate(360deg);
+    opacity:0;
+  }
+}
+
+/* Card */
+.card{
+  background:rgba(255,255,255,0.15);
+  padding:30px;
+  border-radius:25px;
+  backdrop-filter:blur(15px);
+  width:90%;
+  max-width:420px;
+  box-shadow:0 15px 40px rgba(0,0,0,0.3);
+  position:absolute;
+  animation:fadeIn 1s ease;
+}
+
+@keyframes fadeIn{
+  from{opacity:0; transform:scale(0.9);}
+  to{opacity:1; transform:scale(1);}
+}
+
+/* Glowing Name */
+.glow{
+  font-size:28px;
+  font-weight:bold;
+  animation:glow 2s ease-in-out infinite alternate;
+}
+@keyframes glow{
+  from{
+    text-shadow:0 0 10px #fff,0 0 20px #ff4da6,0 0 30px #ff4da6;
+  }
+  to{
+    text-shadow:0 0 20px #fff,0 0 30px #ff1a75,0 0 40px #ff1a75;
+  }
+}
+
+/* Heart Image Frame */
+.heart-frame{
+  width:250px;
+  height:230px;
+  margin:20px auto;
+  clip-path:path("M125 30 C125 -10, 250 -10, 250 80 C250 150,125 200,125 200 C125 200,0 150,0 80 C0 -10,125 -10,125 30 Z");
+  overflow:hidden;
+  box-shadow:0 10px 25px rgba(0,0,0,0.3);
+}
+.heart-frame img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+/* Buttons */
+button{
+  padding:12px 22px;
+  border:none;
+  border-radius:30px;
+  font-size:16px;
+  cursor:pointer;
+  margin:10px;
+  transition:0.3s;
+}
+
+#yesBtn{background:#ff2e63;color:white;}
+#yesBtn:hover{transform:scale(1.1);}
+
+#noBtn{background:white;color:#ff2e63;position:relative;}
+
+/* Gifts */
+.gifts{
+  display:flex;
+  justify-content:center;
+  gap:20px;
+  flex-wrap:wrap;
+  margin-top:20px;
+}
+
+.gifts img{
+  width:100px;
+  border-radius:15px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.3);
+  animation:floatGift 3s ease-in-out infinite;
+}
+
+@keyframes floatGift{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-15px);}
+}
+
+/* Fireworks */
+.firework{
+  position:fixed;
+  width:6px;
+  height:6px;
+  background:white;
+  border-radius:50%;
+  animation:explode 1s ease-out forwards;
+}
+@keyframes explode{
+  to{transform:translate(var(--x),var(--y));opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<audio autoplay loop>
+  <source src="song.mp3" type="audio/mp3">
+</audio>
+
+<!-- MAIN PAGE -->
+<div class="card" id="mainPage">
+  <h1 class="glow">Elakkiya 💎💗</h1>
+  <p>Will you be my Valentine? 🌹</p>
+
+  <div class="heart-frame">
+    <img src="photo.jpg">
+  </div>
+
+  <button id="yesBtn">YES 💖</button>
+  <button id="noBtn">NO 😜</button>
+</div>
+
+<!-- GREETING 1 -->
+<div class="card" id="greet1" style="display:none;">
+  <h1>My Sweet Love 💞</h1>
+  <p>You are the best thing in my life 💖<br>
+  Every moment with you feels magical ✨</p>
+  <button onclick="next1()">Next ➜</button>
+</div>
+
+<!-- GREETING 2 -->
+<div class="card" id="greet2" style="display:none;">
+  <h1>Forever With You 💍</h1>
+  <p>I promise to stand beside you always ❤️<br>
+  No matter what happens 🫶</p>
+  <button onclick="showGifts()">See Your Gifts 🎁</button>
+</div>
+
+<!-- GIFT PAGE -->
+<div class="card" id="giftPage" style="display:none;">
+  <h1>For My Queen 👑</h1>
+  <p>These are for you my love 💖</p>
+
+  <div class="gifts">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/0/0c/KitKat-4fingers.jpg">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/4/49/A_red_rose.jpg">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e9/Diamond_ring.jpg">
+  </div>
+
+  <p style="margin-top:20px;">One day I will give all this in real life too 💍🌹🍫</p>
+</div>
+
+<script>
+
+/* Floating Hearts */
+function createHeart(){
+  const heart=document.createElement("div");
+  heart.className="heart";
+  heart.innerHTML="💖";
+  heart.style.left=Math.random()*100+"vw";
+  heart.style.fontSize=(Math.random()*20+15)+"px";
+  heart.style.animationDuration=(Math.random()*3+3)+"s";
+  document.body.appendChild(heart);
+  setTimeout(()=>heart.remove(),6000);
+}
+setInterval(createHeart,500);
+
+/* Buttons */
+const yesBtn=document.getElementById("yesBtn");
+const noBtn=document.getElementById("noBtn");
+
+yesBtn.onclick=()=>{
+  document.getElementById("mainPage").style.display="none";
+  document.getElementById("greet1").style.display="block";
+  launchFireworks();
+};
+
+noBtn.onmouseover=()=>{
+  noBtn.style.position="absolute";
+  noBtn.style.left=Math.random()*300+"px";
+  noBtn.style.top=Math.random()*200+"px";
+};
+
+function next1(){
+  document.getElementById("greet1").style.display="none";
+  document.getElementById("greet2").style.display="block";
+}
+
+function showGifts(){
+  document.getElementById("greet2").style.display="none";
+  document.getElementById("giftPage").style.display="block";
+  launchFireworks();
+}
+
+/* Fireworks */
+function launchFireworks(){
+  for(let i=0;i<50;i++){
+    const fw=document.createElement("div");
+    fw.className="firework";
+    fw.style.left=window.innerWidth/2+"px";
+    fw.style.top=window.innerHeight/2+"px";
+    fw.style.setProperty('--x',(Math.random()*500-250)+'px');
+    fw.style.setProperty('--y',(Math.random()*500-250)+'px');
+    document.body.appendChild(fw);
+    setTimeout(()=>fw.remove(),1000);
+  }
+}
+
+</script>
+
+</body>
+</html>
